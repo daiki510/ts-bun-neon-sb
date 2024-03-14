@@ -8,9 +8,14 @@
     "start:hot": "bun run --hot src/index.ts"
   },
   "devDependencies": {
-    "@types/bun": "^1.0.8"
+    "@types/bun": "^1.0.8",
+    "@types/pg": "^8.11.2",
+    "ts-dotenv": "^0.9.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "pg": "^8.11.3"
   }
 }
