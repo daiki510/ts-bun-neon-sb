@@ -1,16 +1,13 @@
-import { client, fetchAllTasks, fetchTaskBy, initDB } from "./pgClient";
+import { client } from "./pgClient";
 
 await client.connect();
 
 const server = Bun.serve({
   port: 3000,
   async fetch(req) {
-    await initDB();
-    const tasks = await fetchAllTasks();
-    const task = await fetchTaskBy(1);
-    return new Response(
-      `task: ${JSON.stringify(task)}\ntasks: ${JSON.stringify(tasks)}`
-    );
+    const databases = await client.query("SELECT datname FROM pg_database");
+    const result = databases.rows.map((row) => row.datname);
+    return new Response(`databases: ${JSON.stringify(result)}`);
   },
 });
 

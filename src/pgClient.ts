@@ -57,7 +57,7 @@ async function dropTasksTable() {
 // }
 
 async function insertTasks() {
-  const insertValues = [...Array(5).keys()]
+  const insertValues = [...Array(10).keys()]
     .map((i) => {
       const id = i + 1;
       const title = `'task_${id}'`;
