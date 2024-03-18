@@ -2,7 +2,6 @@ import { Client } from "pg";
 import { load } from "ts-dotenv";
 
 const env = load({
-  // DATABASE_URL: String,
   PGHOST: String,
   PGDATABASE: String,
   PGUSER: String,
@@ -10,9 +9,6 @@ const env = load({
   ENDPOINT_ID: String,
 });
 
-// const client = new Client({
-//   connectionString: env.DATABASE_URL,
-// });
 export const client = new Client({
   user: env.PGUSER,
   password: env.PGPASSWORD,
@@ -51,10 +47,6 @@ async function createTasksTable() {
 async function dropTasksTable() {
   await client.query("DROP TABLE IF EXISTS tasks");
 }
-
-// async function truncateTasksTable() {
-//   await client.query("TRUNCATE tasks");
-// }
 
 async function insertTasks() {
   const insertValues = [...Array(10).keys()]
